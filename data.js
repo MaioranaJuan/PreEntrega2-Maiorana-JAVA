@@ -1,94 +1,120 @@
-let comando = 0;
-let carrito = 0;
-let remeras = 0;
-let pantalones = 0;
-let accesorios = 0;
+class Ropa {
+    constructor(nombre, precio, foto) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.foto = foto;
+    }
+}
 
-while (comando != "Salir") {
+let Carrito = [];
 
-    comando = parseInt(prompt("1) Productos\n 2) Metodos de pago \n 3)Carrito \n 4) Salir"));
+// variables
+let pago = 0;
+let cancelar = 0;
+let ProductosEnCarrito = "";
+let finalizado = false;
 
-    switch (comando) {
+// Productos
+const bandanaAkatzuki = new Ropa("Bandana Akatzuki", 1300, "Bandana-Konoha.png");
+const bodyAkatzuki = new Ropa("Body Akatzuki", 2000, "BodyAkatzuki.webp");
+const buzoUchiha = new Ropa("Buzo Uchiha", 5000, "Buzo-Uchiha.webp");
+const BuzoUchihaRojo = new Ropa("Buzo Uchiha Rojo", 5000, "BuzoUchihaRojo.webp");
+const PantuflasAkatzuki = new Ropa("Pantuflas Akatzuki", 1500, "PantuflasAkatzuki.webp");
+const ConjuntoNaruto = new Ropa("Conjunto Naruto", 2300, "ConjuntoNaruto.webp");
+const GorraAkatzuki = new Ropa("Gorra Akatzuki", 1800, "GorraAkatzuki.webp");
+const MediasNaruto = new Ropa("Medias Naruto", 500, "MediasNaruto.webp");
+const BufandaAkatzuki = new Ropa("Bufanda Akatzuki", 800, "Bufanda Akatzuki.webp");
 
-        // PRODUCTOS
-        case 1:
-            let list2 = parseInt(prompt("Agregar producto al carrito: \n 1)Remeras \n 2)Pantalones \n 3)Accesorios"));
+const elementoPago = document.querySelector("#Precio");
+const elementoCarrito = document.querySelector("#Carrito");
+const HabilitarCompra = document.getElementById('Compra');
+const HabilitarLimpieza = document.getElementById('Limpieza');
 
-            if (list2 == 1) {
-                let eleccion = parseInt(prompt("Desea agregar 'Remeras' al carrito? \n 1)Si \n 2)No"));
-                if (eleccion == 1) {
-                    alert("Producto agregado al carrito....");
-                    carrito = carrito + 1;
-                    remeras = remeras + 1;
-                    continue;
-                } else if (eleccion == 2) {
-                    alert("Volviendo al principio....");
-                    continue;
+// precio del carrito
+elementoPago.innerText = pago;
+
+// agregado de productos al carrito
+function comprar(Ropa) {
+    Carrito.push(Ropa);
+    pago = pago + Ropa.precio;
+    let elementoRopa = `
+    <li>
+        <img src="assets/${Ropa.foto}" class="imgCarrito"/>
+        <p class="imgCarrito"><span class="carritoText">${Ropa.nombre}</span> $${Ropa.precio}</p>
+    </li>
+    `;
+    elementoCarrito.innerHTML += elementoRopa;
+    elementoPago.innerText = pago;
+
+    if (Carrito.length > 0) {
+        HabilitarCompra.disabled = false;
+        HabilitarLimpieza.disabled = false;
+    }
+    ProductosEnCarrito = Carrito.toString();
+}
+
+function Asegurar() {
+    let CompraFinal = parseInt(prompt("Desea utilizar este método de pago?\n 1) Sí\n 2) No"));
+
+    if (CompraFinal === 1) {
+        alert("Gracias por confiar en nosotros a la hora de hacer su compra");
+        alert("Usted ha comprado " + ProductosEnCarrito);
+        Carrito.splice(0, Carrito.length);
+        Carrito = [];
+        elementoCarrito.innerHTML = "";
+        pago = 0;
+        elementoPago.innerText = pago;
+        HabilitarCompra.disabled = true;
+        HabilitarLimpieza.disabled = true;
+        finalizado = true;
+    } else if (CompraFinal === 2) {
+        alert("Redirigiendo....");
+    }
+}
+
+
+function Finalizar() {
+    while (cancelar != 3 && !finalizado) {
+        let direccion = prompt("Ingrese su dirección para continuar con la compra:");
+
+        let confirmar = parseInt(prompt("Su dirección es '" + direccion + "'.\n¿Desea cambiar la dirección?\n 1) Sí\n 2) No\n 3) Cancelar Operación"));
+
+        switch (confirmar) {
+            case 1:
+                alert("Redirigiendo...");
+                continue;
+
+            case 2:
+                let metodos = prompt("Elija el método de pago:\n 1) Crédito\n 2) Débito/Efectivo");
+
+                if (metodos == 1) {
+                    alert("Con tarjetas de crédito tienes hasta 12 cuotas sin interés.");
+                    alert("Precio Final: $" + pago + " en 12 cuotas de $" + pago / 12);
+                    Asegurar();
+                } else if (metodos == 2) {
+                    alert("Con efectivo el pago es de $" + pago);
+                    Asegurar();
                 } else {
-                    alert("error");
-                    continue;
+                    alert("ERROR");
                 }
-            } else if (list2 == 2) {
-                let eleccion = parseInt(prompt("Desea agregar 'Pantalones' al carrito? \n 1)Si \n 2)No"));
-                if (eleccion == 1) {
-                    alert("Producto agregado al carrito....");
-                    carrito = carrito + 1;
-                    pantalones = pantalones + 1;
-                    continue;
-                } else if (eleccion == 2) {
-                    alert("Volviendo al principio....");
-                    continue;
-                } else {
-                    alert("error");
-                    continue;
-                }
-            } else if (list2 == 3) {
-                let eleccion = parseInt(prompt("Desea agregar 'Accesoios' al carrito? \n 1)Si \n 2)No"));
-                if (eleccion == 1) {
-                    alert("Producto agregado al carrito....");
-                    carrito = carrito + 1;
-                    accesorios = accesorios + 1;
-                    continue;
-                } else if (eleccion == 2) {
-                    alert("Volviendo al principio....");
-                    continue;
-                } else {
-                    alert("error");
-                    continue;
-                }
-            }
+                continue;
 
-        // METODOS DE PAGO
-        case 2:
-            let metodos = prompt("Elija el metodo de pago:\n 1)Credito \n 2)Debito \n 3)Efectivo");
-            if (metodos == 1) {
-                alert("Con tarjetas de credito tenes hasta 12 cuotas sin interes.")
-            } else if (metodos == 2) {
-                alert("Con tarjetas de debito tenes hasta 3 cuotas en los productos de indumentaria.");
-            } else if (metodos == 3) {
-                alert("Las compras en efectivo son de pago unico y en mano.");
-            } else {
-                alert("ERROR");
-            }
-            break;
+            case 3:
+                cancelar = 3;
+                finalizado = true;
+                break;
+        }
+    }
+}
 
-        // CARRITO
-        case 3:
-            if (carrito == 0) {
-                alert("Sin productos en el carrito");
-            } else {
-                alert("Productos agregados al carrito: \n" + remeras + " Remeras \n" + pantalones + " Pantalones \n" + accesorios + " Accesorios");
-            }
-            break;
-
-        // SALIR
-        case 4:
-            comando = "Salir";
-            break;
-
-        default:
-            alert("este comando no existe");
-            break;
-
+function Limpiar() {
+    let limpieza = parseInt(prompt("Esta seguro que desea limpiar el carrito? \n 1)Si \n 2)No"));
+    if (limpieza == 1) {
+        Carrito = [];
+        elementoCarrito.innerHTML = "";
+        pago = 0;
+        elementoPago.innerText = pago;
+        HabilitarCompra.disabled = true;
+        HabilitarLimpieza.disabled = true;
     }
 }
