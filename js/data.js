@@ -1,9 +1,8 @@
 class Ropa {
-    constructor(nombre, precio, foto, id) {
+    constructor(nombre, precio, foto) {
         this.nombre = nombre;
         this.precio = precio;
         this.foto = foto;
-        this.id = id;
     }
 }
 
