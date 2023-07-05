@@ -1,8 +1,13 @@
 class Ropa {
-    constructor(nombre, precio, foto) {
+    constructor(nombre, precio, foto, id) {
         this.nombre = nombre;
         this.precio = precio;
         this.foto = foto;
+        this.id = id;
+    }
+
+    IdDeProductos(id) {
+        return this.id === id;
     }
 }
 
@@ -23,6 +28,17 @@ const GorraAkatzuki = new Ropa("Gorra Akatzuki", 1800, "GorraAkatzuki.webp", 7);
 const MediasNaruto = new Ropa("Medias Naruto", 500, "MediasNaruto.webp", 8);
 const BufandaAkatzuki = new Ropa("Bufanda Akatzuki", 800, "Bufanda Akatzuki.webp", 9);
 
+let Productos = [
+    bandanaAkatzuki,
+    bodyAkatzuki,
+    buzoUchiha,
+    BuzoUchihaRojo,
+    PantuflasAkatzuki,
+    ConjuntoNaruto,
+    GorraAkatzuki,
+    MediasNaruto,
+    BufandaAkatzuki
+];
 
 const elementoPago = document.querySelector("#Precio");
 const elementoCarrito = document.querySelector("#Carrito");
@@ -93,50 +109,18 @@ function guardarCarrito() {
     localStorage.setItem('carrito', carritoDataJSON);
 }
 
-const botonBandana = document.getElementById('comprarBandana');
-const botonBody = document.getElementById('comprarBody');
-const botonBuzo = document.getElementById('comprarBuzo');
-const botonBuzoRojo = document.getElementById('comprarBuzoRojo');
-const botonPantuflas = document.getElementById('comprarPantuflas');
-const botonConjunto = document.getElementById('comprarConjunto');
-const botonGorra = document.getElementById('comprarGorra');
-const botonMedias = document.getElementById('comprarMedias');
-const botonBufanda = document.getElementById('comprarBufanda');
+const botones = document.querySelectorAll('.comprar');
 
-botonBandana.addEventListener('click', function () {
-    comprar(bandanaAkatzuki);
-});
+function buscarRopaPorId(id) {
+    return Productos.find((ropa) => ropa.id === id);
+}
 
-botonBody.addEventListener('click', function () {
-    comprar(bodyAkatzuki);
-});
-
-botonBuzo.addEventListener('click', function () {
-    comprar(buzoUchiha);
-});
-
-botonBuzoRojo.addEventListener('click', function () {
-    comprar(BuzoUchihaRojo);
-});
-
-botonPantuflas.addEventListener('click', function () {
-    comprar(PantuflasAkatzuki);
-});
-
-botonConjunto.addEventListener('click', function () {
-    comprar(ConjuntoNaruto);
-});
-
-botonGorra.addEventListener('click', function () {
-    comprar(GorraAkatzuki);
-});
-
-botonMedias.addEventListener('click', function () {
-    comprar(MediasNaruto);
-});
-
-botonBufanda.addEventListener('click', function () {
-    comprar(BufandaAkatzuki);
+botones.forEach((boton) => {
+    boton.addEventListener('click', () => {
+        const id = Number(boton.id);
+        const ropa = buscarRopaPorId(id);
+        comprar(ropa);
+    });
 });
 
 btnCompra.addEventListener('click', function () {
