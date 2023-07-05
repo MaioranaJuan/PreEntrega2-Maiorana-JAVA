@@ -1,3 +1,10 @@
+/* reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 ul,
 ol,
 li {
@@ -15,22 +22,26 @@ input {
     font-size: initial;
 }
 
-body{
+body {
     background-color: #2c2828;
 }
 
 header {
     background-color: #363131;
-    padding: 15px;
-}
-
-ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    padding: 5px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
     font-size: 50px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
+    height: 90px;
+}
+
+.ulNav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 li {
@@ -50,7 +61,7 @@ li {
 
 .carritoBTN {
     width: 200px;
-    height: 70px;
+    height: 40px;
 }
 
 .MasVendidos {

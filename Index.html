@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Document</title>
+    <title>DataNaru | Tienda</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -17,7 +17,7 @@
 
     <header>
         <nav>
-            <ul>
+            <ul class="ulNav">
                 <li>
                     <a href="./Index.html">DataNaru</a>
                 </li>
@@ -40,14 +40,13 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body">
-                            <div id="Carrito">
-
-                            </div>
+                            <ul id="Carrito">
+                                <!-- Prouctos del carrito -->
+                            </ul>
                             <p class="PrecioCarrito">Precio de la compra: $<span id="Precio"></span></p>
-                            <button class="carritoBTN" onclick="Finalizar()" disabled="disabled"
-                                id="Compra">Comprar</button>
-                            <button class="carritoBTN" onclick="Limpiar()" disabled="disabled" id="Limpieza">Limpiar
+                            <button class="carritoBTN" disabled="disabled" id="Limpieza">Limpiar
                                 Carrito</button>
+                            <button class="carritoBTN" disabled="disabled" id="btnCompra">Comprar</button>
                         </div>
                     </div>
                 </li>
@@ -57,12 +56,12 @@
 
     <main>
 
-        <section class="MasVendidos">
+        <!-- <section class="MasVendidos">
             <h1 class="titulo">Mas Vendidos:</h1>
             <img class="f1 imgMV" src="./assets/RemeraAkatzuki.webp" alt="">
             <img class="f2 imgMV" src="./assets/PijamaAkatzuki.webp" alt="">
             <img class="f3 imgMV" src="./assets/Piluso Akatzuki.webp" alt="">
-        </section>
+        </section> -->
 
         <div class="Productos">
             <h2>Nuestros Productos:</h2>
@@ -75,8 +74,8 @@
                             <p class="card-text">This is a longer card with supporting text below as a natural lead-in
                                 to
                                 additional content. This content is a little bit longer.</p>
-                            <input class="btn btn-primary" type="submit" value="Comprar"
-                                onclick="comprar(bandanaAkatzuki)">
+                            <button class="btn btn-primary comprar" type="submit" id="comprarBandana">Comprar <i
+                                    class="fa-solid fa-cart-plus"></i></button>
                         </div>
                     </div>
                 </div>
@@ -88,8 +87,8 @@
                             <p class="card-text">This is a longer card with supporting text below as a natural lead-in
                                 to
                                 additional content. This content is a little bit longer.</p>
-                            <input class="btn btn-primary" type="submit" value="Comprar"
-                                onclick="comprar(bodyAkatzuki)">
+                            <button class="btn btn-primary comprar" type="submit" id="comprarBody">Comprar <i
+                                    class="fa-solid fa-cart-plus"></i></button>
                         </div>
                     </div>
                 </div>
@@ -101,7 +100,8 @@
                             <p class="card-text">This is a longer card with supporting text below as a natural lead-in
                                 to
                                 additional content. This content is a little bit longer.</p>
-                            <input class="btn btn-primary" type="submit" value="Comprar" onclick="comprar(buzoUchiha)">
+                            <button class="btn btn-primary comprar" type="submit" id="comprarBuzo">Comprar <i
+                                    class="fa-solid fa-cart-plus"></i></button>
                         </div>
                     </div>
                 </div>
@@ -113,8 +113,8 @@
                             <p class="card-text">This is a longer card with supporting text below as a natural lead-in
                                 to
                                 additional content. This content is a little bit longer.</p>
-                            <input class="btn btn-primary" type="submit" value="Comprar"
-                                onclick="comprar(BuzoUchihaRojo)">
+                            <button class="btn btn-primary comprar" type="submit" id="comprarBuzoRojo">Comprar <i
+                                    class="fa-solid fa-cart-plus"></i></button>
                         </div>
                     </div>
                 </div>
@@ -126,8 +126,8 @@
                             <p class="card-text">This is a longer card with supporting text below as a natural lead-in
                                 to
                                 additional content. This content is a little bit longer.</p>
-                            <input class="btn btn-primary" type="submit" value="Comprar"
-                                onclick="comprar(PantuflasAkatzuki)">
+                            <button class="btn btn-primary comprar" type="submit" id="comprarPantuflas">Comprar
+                                <i class="fa-solid fa-cart-plus"></i></button>
                         </div>
                     </div>
                 </div>
@@ -139,8 +139,8 @@
                             <p class="card-text">This is a longer card with supporting text below as a natural lead-in
                                 to
                                 additional content. This content is a little bit longer.</p>
-                            <input class="btn btn-primary" type="submit" value="Comprar"
-                                onclick="comprar(ConjuntoNaruto)">
+                            <button class="btn btn-primary comprar" type="submit" id="comprarConjunto">Comprar <i
+                                    class="fa-solid fa-cart-plus"></i></button>
                         </div>
                     </div>
                 </div>
@@ -152,8 +152,8 @@
                             <p class="card-text">This is a longer card with supporting text below as a natural lead-in
                                 to
                                 additional content. This content is a little bit longer.</p>
-                            <input class="btn btn-primary" type="submit" value="Comprar"
-                                onclick="comprar(GorraAkatzuki)">
+                            <button class="btn btn-primary comprar" type="submit" id="comprarGorra">Comprar <i
+                                    class="fa-solid fa-cart-plus"></i></button>
                         </div>
                     </div>
                 </div>
@@ -165,8 +165,8 @@
                             <p class="card-text">This is a longer card with supporting text below as a natural lead-in
                                 to
                                 additional content. This content is a little bit longer.</p>
-                            <input class="btn btn-primary" type="submit" value="Comprar"
-                                onclick="comprar(MediasNaruto)">
+                            <button class="btn btn-primary comprar" type="submit" id="comprarMedias">Comprar <i
+                                    class="fa-solid fa-cart-plus"></i></button>
                         </div>
                     </div>
                 </div>
@@ -178,8 +178,8 @@
                             <p class="card-text">This is a longer card with supporting text below as a natural lead-in
                                 to
                                 additional content.</p>
-                            <input class="btn btn-primary" type="submit" value="Comprar"
-                                onclick="comprar(BufandaAkatzuki)">
+                            <button class="btn btn-primary comprar" type="submit" id="comprarBufanda">Comprar <i
+                                    class="fa-solid fa-cart-plus"></i></button>
                         </div>
                     </div>
                 </div>
@@ -188,11 +188,12 @@
 
     </main>
 
-    <script src="./js/data.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://kit.fontawesome.com/b4fcd4fa61.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
+    <script src="./js/data.js"></script>
 
 </body>
 
