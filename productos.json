@@ -1,0 +1,194 @@
+[
+    {
+        "nombre": "Bandana Akatzuki",
+        "precio": 1300,
+        "foto": "Bandana-Konoha.webp",
+        "id": 1,
+        "cantidad": 1,
+        "categoria": "Indumentaria"
+    },
+    {
+        "nombre": "Body Akatzuki",
+        "precio": 2000,
+        "foto": "Body-Akatzuki.webp",
+        "id": 2,
+        "cantidad": 1,
+        "categoria": "Indumentaria"
+    },
+    {
+        "nombre": "Buzo Uchiha",
+        "precio": 5000,
+        "foto": "Buzo-Uchiha.webp",
+        "id": 3,
+        "cantidad": 1,
+        "categoria": "Indumentaria"
+    },
+    {
+        "nombre": "Buzo Uchiha Rojo",
+        "precio": 5000,
+        "foto": "Buzo-Uchiha-Rojo.webp",
+        "id": 4,
+        "cantidad": 1,
+        "categoria": "Indumentaria"
+    },
+    {
+        "nombre": "Pantuflas Akatzuki",
+        "precio": 1500,
+        "foto": "Pantuflas-Akatzuki.webp",
+        "id": 5,
+        "cantidad": 1,
+        "categoria": "Indumentaria"
+    },
+    {
+        "nombre": "Conjunto Naruto",
+        "precio": 2300,
+        "foto": "Conjunto-Naruto.webp",
+        "id": 6,
+        "cantidad": 1,
+        "categoria": "Indumentaria"
+    },
+    {
+        "nombre": "Gorra Akatzuki",
+        "precio": 1800,
+        "foto": "Gorra-Akatzuki.webp",
+        "id": 7,
+        "cantidad": 1,
+        "categoria": "Indumentaria"
+    },
+    {
+        "nombre": "Medias Naruto",
+        "precio": 500,
+        "foto": "Medias-Naruto.webp",
+        "id": 8,
+        "cantidad": 1,
+        "categoria": "Indumentaria"
+    },
+    {
+        "nombre": "Bufanda Akatzuki",
+        "precio": 800,
+        "foto": "Bufanda-Akatzuki.webp",
+        "id": 9,
+        "cantidad": 1,
+        "categoria": "Indumentaria"
+    },
+    {
+        "nombre": "Gaara",
+        "precio": 5000,
+        "foto": "Figura-Gaara.webp",
+        "id": 10,
+        "cantidad": 1,
+        "categoria": "Figuras" 
+    },
+    {
+        "nombre": "Itachi Anbu",
+        "precio": 6500,
+        "foto": "Figura-Itachi-Anbu.webp",
+        "id": 11,
+        "cantidad":1 ,
+        "categoria": "Figuras" 
+    },
+    {
+        "nombre": "Kakashi Hatake",
+        "precio": 5000,
+        "foto": "Figura-Kakashi.webp",
+        "id": 12,
+        "cantidad": 1,
+        "categoria": "Figuras" 
+    },
+    {
+        "nombre": "Kurama",
+        "precio": 10000,
+        "foto": "Figura-Kurama.webp",
+        "id": 13,
+        "cantidad": 1,
+        "categoria": "Figuras" 
+    },
+    {
+        "nombre": "Shikamaru Nara",
+        "precio": 3000,
+        "foto": "Figura-Sikamaru.webp",
+        "id": 14,
+        "cantidad": 1,
+        "categoria": "Figuras" 
+    },
+    {
+        "nombre": "Itachi Akatzuki",
+        "precio": 6000,
+        "foto": "Funko-POP-ItachiAkatzuki.webp",
+        "id": 15,
+        "cantidad": 1,
+        "categoria": "Funkos" 
+    },
+    {
+        "nombre": "Madara Edo Tensei",
+        "precio": 5000,
+        "foto": "Funko-POP-Madara.webp",
+        "id": 16,
+        "cantidad": 1,
+        "categoria": "Funkos" 
+    },
+    {
+        "nombre": "Minato Namikaze",
+        "precio": 7000,
+        "foto": "Funko-POP-Minato.webp",
+        "id": 17,
+        "cantidad": 1,
+        "categoria": "Funkos" 
+    },
+    {
+        "nombre": "Naruto Modo Kurama",
+        "precio": 8000,
+        "foto": "Funko-POP-Naruto-ModoKurama.webp",
+        "id": 18,
+        "cantidad": 1,
+        "categoria": "Funkos" 
+    },
+    {
+        "nombre": "Tsunade Senju",
+        "precio": 2000,
+        "foto": "Funko-POP-Tsunade.webp",
+        "id": 19,
+        "cantidad": 1,
+        "categoria": "Funkos" 
+    },
+    {
+        "nombre": "Anillo Konoha",
+        "precio": 1500,
+        "foto": "Anillo-Konoha.webp",
+        "id": 20,
+        "cantidad": 1,
+        "categoria": "Accesorios" 
+    },
+    {
+        "nombre": "Collar Itachi Uchiha",
+        "precio": 2000,
+        "foto": "collar-Itachi.webp",
+        "id": 21,
+        "cantidad": 1,
+        "categoria": "Accesorios" 
+    },
+    {
+        "nombre": "Collar Aldea de la hoja",
+        "precio": 1200,
+        "foto": "collar-Konoha.webp",
+        "id": 22,
+        "cantidad": 1,
+        "categoria": "Accesorios" 
+    },
+    {
+        "nombre": "Kit ninja",
+        "precio": 3000,
+        "foto": "Kit-ninja-Azuma.webp",
+        "id": 23,
+        "cantidad": 1,
+        "categoria": "Accesorios" 
+    },
+    {
+        "nombre": "Shuriken Ninja",
+        "precio": 1200,
+        "foto": "Shuriken-ninja.webp",
+        "id": 24,
+        "cantidad": 1,
+        "categoria": "Accesorios" 
+    }
+]

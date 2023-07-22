@@ -1,135 +1,232 @@
-class Ropa {
-    constructor(nombre, precio, foto, id) {
+class producto {
+    constructor(nombre, precio, foto, id, cantidad, categoria) {
         this.nombre = nombre;
         this.precio = precio;
         this.foto = foto;
         this.id = id;
-    }
-
-    IdDeProductos(id) {
-        return this.id === id;
+        this.cantidad = cantidad;
+        this.categoria = categoria;
     }
 }
 
-let Carrito = [];
+class BaseDeDatos {
+    constructor() {
+        this.inventario = [];
+    }
 
-// Variables
-let pago = 0;
-let finalizado = false;
+    async Registro() {
+        const response = await fetch("../productos.json");
+        this.inventario = await response.json();
+        return this.inventario;
+    }
 
-// Productos
-const bandanaAkatzuki = new Ropa("Bandana Akatzuki", 1300, "Bandana-Konoha.png", 1);
-const bodyAkatzuki = new Ropa("Body Akatzuki", 2000, "BodyAkatzuki.webp", 2);
-const buzoUchiha = new Ropa("Buzo Uchiha", 5000, "Buzo-Uchiha.webp", 3);
-const BuzoUchihaRojo = new Ropa("Buzo Uchiha Rojo", 5000, "BuzoUchihaRojo.webp", 4);
-const PantuflasAkatzuki = new Ropa("Pantuflas Akatzuki", 1500, "PantuflasAkatzuki.webp", 5);
-const ConjuntoNaruto = new Ropa("Conjunto Naruto", 2300, "ConjuntoNaruto.webp", 6);
-const GorraAkatzuki = new Ropa("Gorra Akatzuki", 1800, "GorraAkatzuki.webp", 7);
-const MediasNaruto = new Ropa("Medias Naruto", 500, "MediasNaruto.webp", 8);
-const BufandaAkatzuki = new Ropa("Bufanda Akatzuki", 800, "Bufanda Akatzuki.webp", 9);
+    registrosPorNombre(nombreDelProducto) {
+        return this.inventario.filter((producto) =>
+            producto.nombre.toLowerCase().includes(nombreDelProducto)
+        );
+    }
 
-let Productos = [
-    bandanaAkatzuki,
-    bodyAkatzuki,
-    buzoUchiha,
-    BuzoUchihaRojo,
-    PantuflasAkatzuki,
-    ConjuntoNaruto,
-    GorraAkatzuki,
-    MediasNaruto,
-    BufandaAkatzuki
-];
+    registrosPorCategoria(categoria) {
+        return this.inventario.filter((producto) => producto.categoria == categoria);
+    }
 
-const elementoPago = document.querySelector("#Precio");
-const elementoCarrito = document.querySelector("#Carrito");
-const HabilitarLimpieza = document.getElementById('Limpieza');
-const btnCompra = document.getElementById('btnCompra');
+    buscarProductoPorId(id) {
+        return this.inventario.find((producto) => producto.id === id);
+    }
+}
 
-const carritoDataJSON = localStorage.getItem('carrito');
-if (carritoDataJSON) {
-    const carritoData = JSON.parse(carritoDataJSON);
-    Carrito = carritoData.carrito.map(producto => new Ropa(producto.nombre, producto.precio, producto.foto));
-    pago = carritoData.pago;
+class Carrito {
+    constructor() {
 
-    Carrito.forEach(ropa => {
-        let elementoRopa = `
-        <li>
-            <img src="assets/${ropa.foto}" class="imgCarrito"/>
-            <p class="imgCarrito"><span class="carritoText">${ropa.nombre}</span> $${ropa.precio}</p>
-        </li>
+        const carritoStorage = JSON.parse(localStorage.getItem("carrito"));
+
+        this.carritoContenido = [] || carritoStorage;
+        this.precioCarrito = 0;
+        this.DuplicadoEnCarrito = 0;
+
+        this.agregarAlCarrito();
+    }
+
+    LimpiarCarrito() {
+        this.carritoContenido = [];
+        productosEnElCarrito.innerHTML = "";
+        this.precioCarrito = 0;
+        this.DuplicadoEnCarrito = 0;
+        precioDelCarrito.innerText = this.precioCarrito;
+        CantidadDeProductos.innerText = "carrito";
+        BtnLimpiarCarrito.disabled = true;
+        BtnComprar.disabled = true;
+        localStorage.setItem("carrito", JSON.stringify(this.carritoContenido));
+    }
+
+    DuplicadoDeProductos(producto) {
+        const productoEnCarrito = this.estaEnCarrito(producto);
+        if (productoEnCarrito) {
+            productoEnCarrito.cantidad++;
+        } else {
+            this.carritoContenido.push({ ...producto, cantidad: 1 });
+        }
+        localStorage.setItem("carrito", JSON.stringify(this.carritoContenido));
+        this.agregarAlCarrito();
+    }
+
+    estaEnCarrito({ id }) {
+        return this.carritoContenido.find((producto) => producto.id === id);
+    }
+
+    agregarAlCarrito() {
+        this.precioCarrito = 0;
+        this.DuplicadoEnCarrito = 0;
+        productosEnElCarrito.innerHTML = "";
+        for (const producto of this.carritoContenido) {
+            productosEnElCarrito.innerHTML += `
+            <li class="LiCarrito">
+                <img src="/assets/${producto.categoria}/${producto.foto}" class="imgCarrito" alt="${producto.nombre}"/>
+                <div class="divCarrito">
+                    <p class="TextCarrito">${producto.nombre}</p>
+                    <p>$${producto.precio}</p>
+                    <p>Cantidad: ${producto.cantidad}</p>
+                </div>
+                <button class="btn btn-primary btnEliminar" data-id="${producto.id}">
+                <i class="fa-regular fa-trash-can"></i> Eliminar</button>
+            </li>
         `;
-        elementoCarrito.innerHTML += elementoRopa;
-    });
+
+            this.precioCarrito += producto.precio * producto.cantidad;
+            this.DuplicadoEnCarrito += producto.cantidad;
+        }
+
+        const btnEliminarProducto = document.querySelectorAll(".btnEliminar");
+
+        for (const boton of btnEliminarProducto) {
+            boton.onclick = (event) => {
+                event.preventDefault();
+                this.EliminarProductos(Number(boton.dataset.id));
+                if (this.carritoContenido <= 1) {
+                    BtnLimpiarCarrito.disabled = true;
+                    BtnComprar.disabled = true;
+                }
+            }
+        }
+
+        precioDelCarrito.innerText = this.precioCarrito;
+        if (this.DuplicadoEnCarrito < 1) {
+            CantidadDeProductos.innerText = "carrito";
+        } else {
+            CantidadDeProductos.innerText = this.DuplicadoEnCarrito;
+        }
+        BtnLimpiarCarrito.disabled = false;
+        BtnComprar.disabled = false;
+
+    }
+
+    EliminarProductos(id) {
+        const indice = this.carritoContenido.findIndex((producto) => producto.id === id);
+
+        if (this.carritoContenido[indice].cantidad > 1) {
+            this.carritoContenido[indice].cantidad--;
+        } else {
+            this.carritoContenido.splice(indice, 1);
+        }
+        localStorage.setItem("carrito", JSON.stringify(this.carritoContenido));
+        this.agregarAlCarrito();
+    }
 }
 
-elementoPago.innerText = pago;
+const bd = new BaseDeDatos();
 
-HabilitarLimpieza.disabled = Carrito.length === 0;
-btnCompra.disabled = Carrito.length === 0;
+const productosEnElCarrito = document.querySelector("#carrito");
+const precioDelCarrito = document.querySelector("#PrecioCarrito");
+const BtnLimpiarCarrito = document.querySelector("#LimpiarCarrito");
+const BtnComprar = document.querySelector("#btnComprar");
+const SeleccionDeCategorias = document.querySelectorAll(".FiltrosDeCategorias");
+const CantidadDeProductos = document.querySelector("#TotalCarrito");
+const ProductosALaVista = document.querySelector("#TituloProductos")
 
-// Agregar producto al carrito
-function comprar(ropa) {
-    Carrito.push(ropa);
-    pago += ropa.precio;
-    let elementoRopa = `
-    <li>
-        <img src="assets/${ropa.foto}" class="imgCarrito"/>
-        <p class="imgCarrito"><span class="carritoText">${ropa.nombre}</span> $${ropa.precio}</p>
-    </li>
-    `;
-    elementoCarrito.innerHTML += elementoRopa;
-    elementoPago.innerText = pago;
-    HabilitarLimpieza.disabled = false;
-    btnCompra.disabled = false;
-    guardarCarrito();
-}
-const botonLimpiar = document.getElementById('Limpieza');
-
-botonLimpiar.addEventListener('click', function () {
-    Limpiar();
-});
-
-// Limpiar carrito
-function Limpiar() {
-    Carrito = [];
-    elementoCarrito.innerHTML = "";
-    pago = 0;
-    elementoPago.innerText = pago;
-    HabilitarLimpieza.disabled = true;
-    btnCompra.disabled = true;
-    guardarCarrito();
-}
-
-function guardarCarrito() {
-    const carritoData = {
-        carrito: Carrito.map(ropa => ({ nombre: ropa.nombre, precio: ropa.precio, foto: ropa.foto })),
-        pago: pago
-    };
-    const carritoDataJSON = JSON.stringify(carritoData);
-    localStorage.setItem('carrito', carritoDataJSON);
-}
-
-const botones = document.querySelectorAll('.comprar');
-
-function buscarRopaPorId(id) {
-    return Productos.find((ropa) => ropa.id === id);
-}
-
-botones.forEach((boton) => {
-    boton.addEventListener('click', () => {
-        const id = Number(boton.id);
-        const ropa = buscarRopaPorId(id);
-        comprar(ropa);
+SeleccionDeCategorias.forEach((boton) => {
+    boton.addEventListener("click", () => {
+        quitarClase();
+        boton.classList.add("SeleccionDeCategorias");
+        const CategoriaDeProductos = boton.innerText;
+        ProductosHTML(bd.registrosPorCategoria(CategoriaDeProductos));
+        ProductosALaVista.innerHTML = CategoriaDeProductos;
+        ProductosALaVista.innerHTML += " :";
     });
 });
 
-btnCompra.addEventListener('click', function () {
+const TodosNuestrosProductos = document.querySelector("#TodosNuestrosProductos");
+
+TodosNuestrosProductos.addEventListener("click", () => {
+    quitarClase();
+    TodosNuestrosProductos.classList.add("SeleccionDeCategorias");
+    ProductosHTML(bd.inventario);
+});
+
+function quitarClase() {
+    const botonSeleccionado = document.querySelector(".SeleccionDeCategorias");
+    if (botonSeleccionado) {
+        botonSeleccionado.classList.remove("SeleccionDeCategorias");
+    }
+}
+
+const divProductosHTML = document.querySelector("#productos");
+
+bd.Registro().then((inventario) => ProductosHTML(inventario));
+
+function ProductosHTML(inventario) {
+    divProductosHTML.innerHTML = "";
+    for (const producto of inventario) {
+        divProductosHTML.innerHTML += `
+        <div class="col">
+            <div class="card">
+                <img class="imgHTML" src="./assets/${producto.categoria}/${producto.foto}" alt="${producto.nombre}">
+                <div class="card-body">
+                    <h5 class="card-title">${producto.nombre}</h5>
+                    <p class="card-text">Precio: $${producto.precio}</p>
+                    <button class="btn btn-primary agregar" type="submit" data-id="${producto.id}">Agregar al carrito <i
+                    class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+        </div>
+        `;
+    }
+
+    const btnAgregar = document.querySelectorAll(".agregar");
+
+    for (const boton of btnAgregar) {
+        boton.addEventListener("click", function () {
+            const id = Number(boton.dataset.id);
+            const productos = bd.buscarProductoPorId(id);
+            carrito.DuplicadoDeProductos(productos);
+        });
+    }
+}
+
+BtnLimpiarCarrito.addEventListener("click", function () {
+    carrito.LimpiarCarrito();
+});
+
+BtnComprar.addEventListener("click", function () {
     Swal.fire({
         title: 'Gracias por su compra',
         icon: 'success',
         text: 'Pedido en camino...',
         showConfirmButton: false,
         timer: 2000
-    })
-    Limpiar();
+    });
+    carrito.LimpiarCarrito();
 });
+
+const BuscadorInput = document.querySelector("#BuscadorInput");
+
+BuscadorInput.addEventListener("input", () => {
+    const palabra = BuscadorInput.value;
+    const productosEncontrados = bd.registrosPorNombre(palabra.toLowerCase());
+    ProductosHTML(productosEncontrados);
+});
+
+const carrito = new Carrito();
+
+BtnLimpiarCarrito.disabled = carrito.carritoContenido.length <= 1;
+BtnComprar.disabled = carrito.carritoContenido.length <= 1;
+
