@@ -35,6 +35,46 @@ class BaseDeDatos {
     }
 }
 
+const bd = new BaseDeDatos();
+
+const productosEnElCarrito = document.querySelector("#carrito");
+const precioDelCarrito = document.querySelector("#PrecioCarrito");
+const BtnLimpiarCarrito = document.querySelector("#LimpiarCarrito");
+const BtnComprar = document.querySelector("#btnComprar");
+const SeleccionDeCategorias = document.querySelectorAll(".FiltrosDeCategorias");
+const CantidadDeProductos = document.querySelector("#TotalCarrito");
+const ProductosALaVista = document.querySelector("#TituloProductos")
+
+SeleccionDeCategorias.forEach((boton) => {
+    boton.addEventListener("click", () => {
+        quitarClase();
+        boton.classList.add("SeleccionDeCategorias");
+        const CategoriaDeProductos = boton.innerText;
+        ProductosHTML(bd.registrosPorCategoria(CategoriaDeProductos));
+        ProductosALaVista.innerHTML = CategoriaDeProductos;
+        ProductosALaVista.innerHTML += " :";
+    });
+});
+
+const TodosNuestrosProductos = document.querySelector("#TodosNuestrosProductos");
+
+TodosNuestrosProductos.addEventListener("click", () => {
+    quitarClase();
+    TodosNuestrosProductos.classList.add("SeleccionDeCategorias");
+    ProductosHTML(bd.inventario);
+});
+
+function quitarClase() {
+    const botonSeleccionado = document.querySelector(".SeleccionDeCategorias");
+    if (botonSeleccionado) {
+        botonSeleccionado.classList.remove("SeleccionDeCategorias");
+    }
+}
+
+const divProductosHTML = document.querySelector("#productos");
+
+bd.Registro().then((inventario) => ProductosHTML(inventario));
+
 class Carrito {
     constructor() {
 
@@ -132,46 +172,6 @@ class Carrito {
         this.agregarAlCarrito();
     }
 }
-
-const bd = new BaseDeDatos();
-
-const productosEnElCarrito = document.querySelector("#carrito");
-const precioDelCarrito = document.querySelector("#PrecioCarrito");
-const BtnLimpiarCarrito = document.querySelector("#LimpiarCarrito");
-const BtnComprar = document.querySelector("#btnComprar");
-const SeleccionDeCategorias = document.querySelectorAll(".FiltrosDeCategorias");
-const CantidadDeProductos = document.querySelector("#TotalCarrito");
-const ProductosALaVista = document.querySelector("#TituloProductos")
-
-SeleccionDeCategorias.forEach((boton) => {
-    boton.addEventListener("click", () => {
-        quitarClase();
-        boton.classList.add("SeleccionDeCategorias");
-        const CategoriaDeProductos = boton.innerText;
-        ProductosHTML(bd.registrosPorCategoria(CategoriaDeProductos));
-        ProductosALaVista.innerHTML = CategoriaDeProductos;
-        ProductosALaVista.innerHTML += " :";
-    });
-});
-
-const TodosNuestrosProductos = document.querySelector("#TodosNuestrosProductos");
-
-TodosNuestrosProductos.addEventListener("click", () => {
-    quitarClase();
-    TodosNuestrosProductos.classList.add("SeleccionDeCategorias");
-    ProductosHTML(bd.inventario);
-});
-
-function quitarClase() {
-    const botonSeleccionado = document.querySelector(".SeleccionDeCategorias");
-    if (botonSeleccionado) {
-        botonSeleccionado.classList.remove("SeleccionDeCategorias");
-    }
-}
-
-const divProductosHTML = document.querySelector("#productos");
-
-bd.Registro().then((inventario) => ProductosHTML(inventario));
 
 function ProductosHTML(inventario) {
     divProductosHTML.innerHTML = "";
