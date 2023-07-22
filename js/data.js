@@ -15,7 +15,7 @@ class BaseDeDatos {
     }
 
     async Registro() {
-        const response = await fetch("productos.json");
+        const response = await fetch("./productos.json");
         this.inventario = await response.json();
         return this.inventario;
     }
