@@ -77,15 +77,15 @@
         "foto": "Figura-Gaara.webp",
         "id": 10,
         "cantidad": 1,
-        "categoria": "Figuras" 
+        "categoria": "Figuras"
     },
     {
         "nombre": "Itachi Anbu",
         "precio": 6500,
         "foto": "Figura-Itachi-Anbu.webp",
         "id": 11,
-        "cantidad":1 ,
-        "categoria": "Figuras" 
+        "cantidad": 1,
+        "categoria": "Figuras"
     },
     {
         "nombre": "Kakashi Hatake",
@@ -93,7 +93,7 @@
         "foto": "Figura-Kakashi.webp",
         "id": 12,
         "cantidad": 1,
-        "categoria": "Figuras" 
+        "categoria": "Figuras"
     },
     {
         "nombre": "Kurama",
@@ -101,7 +101,7 @@
         "foto": "Figura-Kurama.webp",
         "id": 13,
         "cantidad": 1,
-        "categoria": "Figuras" 
+        "categoria": "Figuras"
     },
     {
         "nombre": "Shikamaru Nara",
@@ -109,7 +109,7 @@
         "foto": "Figura-Sikamaru.webp",
         "id": 14,
         "cantidad": 1,
-        "categoria": "Figuras" 
+        "categoria": "Figuras"
     },
     {
         "nombre": "Itachi Akatzuki",
@@ -117,7 +117,7 @@
         "foto": "Funko-POP-ItachiAkatzuki.webp",
         "id": 15,
         "cantidad": 1,
-        "categoria": "Funkos" 
+        "categoria": "Funkos"
     },
     {
         "nombre": "Madara Edo Tensei",
@@ -125,7 +125,7 @@
         "foto": "Funko-POP-Madara.webp",
         "id": 16,
         "cantidad": 1,
-        "categoria": "Funkos" 
+        "categoria": "Funkos"
     },
     {
         "nombre": "Minato Namikaze",
@@ -133,7 +133,7 @@
         "foto": "Funko-POP-Minato.webp",
         "id": 17,
         "cantidad": 1,
-        "categoria": "Funkos" 
+        "categoria": "Funkos"
     },
     {
         "nombre": "Naruto Modo Kurama",
@@ -141,7 +141,7 @@
         "foto": "Funko-POP-Naruto-ModoKurama.webp",
         "id": 18,
         "cantidad": 1,
-        "categoria": "Funkos" 
+        "categoria": "Funkos"
     },
     {
         "nombre": "Tsunade Senju",
@@ -149,7 +149,7 @@
         "foto": "Funko-POP-Tsunade.webp",
         "id": 19,
         "cantidad": 1,
-        "categoria": "Funkos" 
+        "categoria": "Funkos"
     },
     {
         "nombre": "Anillo Konoha",
@@ -157,7 +157,7 @@
         "foto": "Anillo-Konoha.webp",
         "id": 20,
         "cantidad": 1,
-        "categoria": "Accesorios" 
+        "categoria": "Accesorios"
     },
     {
         "nombre": "Collar Itachi Uchiha",
@@ -165,7 +165,7 @@
         "foto": "collar-Itachi.webp",
         "id": 21,
         "cantidad": 1,
-        "categoria": "Accesorios" 
+        "categoria": "Accesorios"
     },
     {
         "nombre": "Collar Aldea de la hoja",
@@ -173,7 +173,7 @@
         "foto": "collar-Konoha.webp",
         "id": 22,
         "cantidad": 1,
-        "categoria": "Accesorios" 
+        "categoria": "Accesorios"
     },
     {
         "nombre": "Kit ninja",
@@ -181,7 +181,7 @@
         "foto": "Kit-ninja-Azuma.webp",
         "id": 23,
         "cantidad": 1,
-        "categoria": "Accesorios" 
+        "categoria": "Accesorios"
     },
     {
         "nombre": "Shuriken Ninja",
@@ -189,6 +189,6 @@
         "foto": "Shuriken-ninja.webp",
         "id": 24,
         "cantidad": 1,
-        "categoria": "Accesorios" 
+        "categoria": "Accesorios"
     }
 ]
