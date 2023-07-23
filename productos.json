@@ -114,7 +114,7 @@
     {
         "nombre": "Itachi Akatzuki",
         "precio": 6000,
-        "foto": "Funko-POP-ItachiAkatzuki.webp",
+        "foto": "Funko-POP-ItachiAkatzuki.jpg",
         "id": 15,
         "cantidad": 1,
         "categoria": "Funkos"
@@ -122,7 +122,7 @@
     {
         "nombre": "Madara Edo Tensei",
         "precio": 5000,
-        "foto": "Funko-POP-Madara.webp",
+        "foto": "Funko-POP-Madara.jpg",
         "id": 16,
         "cantidad": 1,
         "categoria": "Funkos"
@@ -130,7 +130,7 @@
     {
         "nombre": "Minato Namikaze",
         "precio": 7000,
-        "foto": "Funko-POP-Minato.webp",
+        "foto": "Funko-POP-Minato.jpg",
         "id": 17,
         "cantidad": 1,
         "categoria": "Funkos"
@@ -138,7 +138,7 @@
     {
         "nombre": "Naruto Modo Kurama",
         "precio": 8000,
-        "foto": "Funko-POP-Naruto-ModoKurama.webp",
+        "foto": "Funko-POP-Naruto-ModoKurama.jpg",
         "id": 18,
         "cantidad": 1,
         "categoria": "Funkos"
@@ -146,7 +146,7 @@
     {
         "nombre": "Tsunade Senju",
         "precio": 2000,
-        "foto": "Funko-POP-Tsunade.webp",
+        "foto": "Funko-POP-Tsunade.jpg",
         "id": 19,
         "cantidad": 1,
         "categoria": "Funkos"
